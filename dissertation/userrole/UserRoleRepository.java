@@ -1,0 +1,8 @@
+package uk.ac.qub.njoy.dissertation.userrole;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface UserRoleRepository extends JpaRepository<UserRole, Long> {
+}
