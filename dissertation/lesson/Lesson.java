@@ -1,12 +1,7 @@
 package uk.ac.qub.njoy.dissertation.lesson;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import uk.ac.qub.njoy.dissertation.language.Language;
 import javax.persistence.*;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -32,6 +27,14 @@ public class Lesson {
     @ManyToOne
     private Language Language;
 
+    @JoinTable(name = "recommended_prerequisites", joinColumns = {
+            @JoinColumn(name = "lesson_id", referencedColumnName = "id", nullable =   false)}, inverseJoinColumns = {
+            @JoinColumn(name = "recommended_lesson_id", referencedColumnName = "id", nullable = false)})
+    @ManyToMany
+    private Set<Lesson> recommendedLessons;
+
+
+
     public Lesson(Long id, String title, String description, String theory, String youtubeLink, Long languageId) {
         this.id = id;
         this.title = title;
@@ -46,7 +49,6 @@ public class Lesson {
     }
 
     public Lesson() {
-
     }
 
     public Long getId() {
@@ -89,11 +91,20 @@ public class Lesson {
         this.youtubeLink = youtubeLink;
     }
 
-    public Long getLanguageId() {
-        return Language.getId();
+    public uk.ac.qub.njoy.dissertation.language.Language getLanguage() {
+        return Language;
     }
 
-    public void setLanguage(Long languageId) {
-        Language.setId(languageId);
+    public void setLanguage(uk.ac.qub.njoy.dissertation.language.Language language) {
+        Language = language;
     }
+
+    public Set<Lesson> getRecommendedLessons() {
+        return recommendedLessons;
+    }
+
+    public void setRecommendedLessons(Set<Lesson> recommendedLessons) {
+        this.recommendedLessons = recommendedLessons;
+    }
+
 }

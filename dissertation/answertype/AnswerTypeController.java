@@ -1,25 +1,24 @@
-package uk.ac.qub.njoy.dissertation.userrole;
+package uk.ac.qub.njoy.dissertation.answertype;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import uk.ac.qub.njoy.dissertation.user.User;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/njoy")
-public class UserRoleController {
+public class AnswerTypeController {
 
     @Autowired
-    UserRoleRepository userRoleRepo;
+    AnswerTypeRepository answerTypeRepo;
 
     /**
-     * GET USER ROLES
+     * Get all answer types
      */
-    @GetMapping("/userroles")
-    public List<UserRole> getAllUsers(){
-        return userRoleRepo.findAll();
+    @GetMapping("/answertypes")
+    public List<AnswerType> getAllAnswerTypes(){
+        return answerTypeRepo.findAll();
     }
 }

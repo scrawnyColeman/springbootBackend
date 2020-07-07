@@ -1,4 +1,4 @@
-package uk.ac.qub.njoy.dissertation.userrole;
+package uk.ac.qub.njoy.dissertation.solution;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,16 +10,16 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/njoy")
-public class UserRoleController {
+public class SolutionController {
 
     @Autowired
-    UserRoleRepository userRoleRepo;
+    SolutionRepository solutionRepo;
 
     /**
-     * GET USER ROLES
+     * Get ALL solutions
      */
-    @GetMapping("/userroles")
-    public List<UserRole> getAllUsers(){
-        return userRoleRepo.findAll();
+    @GetMapping("/solutions")
+    public List<Solution> getAllSolutions(){
+        return solutionRepo.findAll();
     }
 }

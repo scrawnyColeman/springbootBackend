@@ -11,26 +11,30 @@ public class ForumPost {
     @Id
     private Long id;
 
+    @Column(name = "title")
     private String title;
 
+    @Column(name = "question")
     private String question;
 
     @OneToOne
     private Lesson lesson;
 
-    public ForumPost(Long id, Long lessonId) {
-        this.id=id;
-        lesson = new Lesson(lessonId);
-    }
     public ForumPost(Long id) {
         this.id = id;
     }
 
-    public ForumPost(Long id, String title, String question) {
+    /**
+     * @param id
+     * @param title
+     * @param question
+     */
+    public ForumPost(Long id, String title, String question, Long lessonId) {
         this.id = id;
         this.title = title;
         this.question = question;
-        lesson = new Lesson(null);
+        this.lesson = new Lesson(lessonId);
+
     }
 
     public ForumPost() {
@@ -60,11 +64,11 @@ public class ForumPost {
         this.question = question;
     }
 
-    public Long getLessonId() {
-        return lesson.getId();
+    public Lesson getLesson() {
+        return lesson;
     }
 
-    public void setLessonId(Long lessonId) {
-        lesson.setId(lessonId);
+    public void setLesson(Lesson lesson) {
+        this.lesson = lesson;
     }
 }

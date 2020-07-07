@@ -15,7 +15,7 @@ public class Comment {
     @Column(name = "comment")
     private String comment;
 
-    @Column(name = "parent_id")
+    @Column(name = "parent_comment_id")
     private Long parentId;
 
     @Column(name = "nesting_value")
@@ -75,19 +75,19 @@ public class Comment {
         this.nestingValue = nestingValue;
     }
 
-    public Long getAuthorId() {
-        return author.getId();
+    public User getAuthor() {
+        return author;
     }
 
-    public void setAuthorId(Long authorId) {
-        author.setId(authorId);
+    public void setAuthor(User author) {
+        this.author = author;
     }
 
-    public Long getPostId() {
-        return post.getId();
+    public ForumPost getPost() {
+        return post;
     }
 
-    public void setPostId(Long postId) {
-        post.setId(postId);
+    public void setPost(ForumPost post) {
+        this.post = post;
     }
 }

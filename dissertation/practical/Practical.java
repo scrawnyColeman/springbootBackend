@@ -82,11 +82,11 @@ public class Practical {
         this.hint = hint;
     }
 
-    public Long getLessonId() {
-        return lesson.getId();
+    public Lesson getLesson() {
+        return lesson;
     }
 
-    public void setLessonId(Long lessonId) {
-        this.lesson.setId(lessonId);
+    public void setLesson(Lesson lesson) {
+        this.lesson = lesson;
     }
 }

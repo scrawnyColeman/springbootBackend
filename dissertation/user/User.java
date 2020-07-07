@@ -82,11 +82,11 @@ public class User {
         DateOfBirth = dateOfBirth;
     }
 
-    public Long getUserRoleId() {
-        return UserRole.getId();
+    public UserRole getUserRole() {
+        return UserRole;
     }
 
-    public void setUserRoleId(Long userRoleId) {
-        UserRole.setId(userRoleId);
+    public void setUserRole(UserRole userRole) {
+        UserRole = userRole;
     }
 }

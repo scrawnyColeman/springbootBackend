@@ -1,25 +1,26 @@
-package uk.ac.qub.njoy.dissertation.userrole;
+package uk.ac.qub.njoy.dissertation.language;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import uk.ac.qub.njoy.dissertation.user.User;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/njoy")
-public class UserRoleController {
+public class LanguageController {
 
     @Autowired
-    UserRoleRepository userRoleRepo;
+    LanguageRepository languageRepo;
 
     /**
-     * GET USER ROLES
+     * Get all languages
      */
-    @GetMapping("/userroles")
-    public List<UserRole> getAllUsers(){
-        return userRoleRepo.findAll();
-    }
+    @GetMapping("/languages")
+    public List<Language> getAllLanguages(){
+      return languageRepo.findAll();
+    };
 }
+
+

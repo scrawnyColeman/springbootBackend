@@ -9,7 +9,7 @@ import javax.persistence.*;
 public class Question {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long Id;
+    private Long id;
 
     @Column(nullable = false, name = "question")
     private String question;
@@ -18,28 +18,29 @@ public class Question {
     private String codeSnippet;
 
     @ManyToOne
-    private Lesson Lesson;
+    @JoinColumn(name = "lesson_id", nullable = false)
+    private Lesson lesson;
 
     public Question(Long id) {
-        Id = id;
+        this.id = id;
     }
 
     public Question(Long id, String question, String codeSnippet, Long lessonId) {
-        Id = id;
+        this.id = id;
         this.question = question;
         this.codeSnippet = codeSnippet;
-        this.Lesson = new Lesson(lessonId);
+        lesson = new Lesson(lessonId);
     }
 
     public Question() {
     }
 
     public Long getId() {
-        return Id;
+        return this.id;
     }
 
     public void setId(Long id) {
-        Id = id;
+        this.id = id;
     }
 
     public String getQuestion() {
@@ -58,11 +59,11 @@ public class Question {
         this.codeSnippet = codeSnippet;
     }
 
-    public Long getLesson() {
-        return Lesson.getId();
+    public Lesson getLesson() {
+        return lesson;
     }
 
-    public void setLesson(Long lessonId) {
-        Lesson.setId(lessonId);
+    public void setLesson(Lesson lesson) {
+        this.lesson = lesson;
     }
 }

@@ -58,11 +58,11 @@ public class Solution {
         this.explanation = explanation;
     }
 
-    public Long getPracticalId() {
-        return practical.getId();
+    public Practical getPractical() {
+        return practical;
     }
 
-    public void setPracticalId(Long practicalId) {
-        this.practical.setId(practicalId);
+    public void setPractical(Practical practical) {
+        this.practical = practical;
     }
 }

@@ -1,5 +1,6 @@
 package uk.ac.qub.njoy.dissertation.userlesson;
 
+import org.springframework.data.jpa.repository.Query;
 import uk.ac.qub.njoy.dissertation.lesson.Lesson;
 import uk.ac.qub.njoy.dissertation.user.User;
 
@@ -21,6 +22,7 @@ public class UserLesson {
 
     @ManyToOne
     private Lesson lesson;
+
 
     public UserLesson(Long id, boolean isCompleted, Long userId, Long lessonId) {
         this.id = id;
@@ -52,19 +54,19 @@ public class UserLesson {
         isCompleted = completed;
     }
 
-    public Long getUserId() {
-        return user.getId();
+    public User getUser() {
+        return user;
     }
 
-    public void setUserId(Long userId) {
-        user.setId(userId);
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    public Long getLessonId() {
-        return lesson.getId();
+    public Lesson getLesson() {
+        return lesson;
     }
 
-    public void setLessonId(Long lessonId) {
-        lesson.setId(lessonId);
+    public void setLesson(Lesson lesson) {
+        this.lesson = lesson;
     }
 }
