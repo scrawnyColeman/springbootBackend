@@ -9,6 +9,7 @@ import javax.persistence.*;
 public class Solution {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "code_snippet")
@@ -20,8 +21,7 @@ public class Solution {
     @OneToOne
     private Practical practical;
 
-    public Solution(Long id, String codeSnippet, String explanation, Long practicalId) {
-        this.id = id;
+    public Solution(String codeSnippet, String explanation, Long practicalId) {
         this.codeSnippet = codeSnippet;
         this.explanation = explanation;
         practical = new Practical(practicalId);

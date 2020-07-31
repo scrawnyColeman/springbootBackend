@@ -1,22 +1,30 @@
 package uk.ac.qub.njoy.dissertation.userlesson;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 import uk.ac.qub.njoy.dissertation.exceptions.ResourceNotFoundException;
+import uk.ac.qub.njoy.dissertation.lesson.Lesson;
+import uk.ac.qub.njoy.dissertation.lesson.LessonRepository;
 import uk.ac.qub.njoy.dissertation.user.User;
+import uk.ac.qub.njoy.dissertation.user.UserRepository;
 
 import java.util.List;
 
 
 @RestController
 @RequestMapping("/njoy")
+@CrossOrigin(origins = "http://localhost:3000")
 public class UserLessonController {
 
     @Autowired
     UserLessonRepository userLessonRepo;
+    @Autowired
+    UserRepository userRepo;
+    @Autowired
+    LessonRepository lessonRepo;
+
 
     @GetMapping("/userlessons")
     public List<UserLesson> getAllUserLessons (){
@@ -32,6 +40,25 @@ public class UserLessonController {
      */
     @GetMapping("/user_lessons/{userId}")
     public List<UserLesson> getLessonByUserId(@PathVariable Long userId) {
-        return userLessonRepo.findByUserId(userId);
+        return userLessonRepo.findByUserIdAndIsCompletedFalse(userId);
+    }
+
+    /**
+     * Create a new user lesson
+     */
+    @PostMapping("/user/{userId}/lesson/{lessonId}")
+    public UserLesson createUserLesson(@PathVariable(value = "userId") Long userId,
+                           @PathVariable(value = "lessonId") Long lessonId) {
+
+
+        User newUser = userRepo.findById(userId)
+                .orElseThrow(() -> new ResourceNotFoundException("User", "id", userId));
+
+        Lesson lesson = lessonRepo.findById(lessonId)
+                .orElseThrow(() -> new ResourceNotFoundException("Lesson", "id", lessonId));
+
+
+        UserLesson newLesson = new UserLesson(false, newUser.getId(), lesson.getId());
+        return userLessonRepo.save(newLesson);
     }
 }

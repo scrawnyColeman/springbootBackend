@@ -1,6 +1,8 @@
 package uk.ac.qub.njoy.dissertation.forumpost;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -28,5 +30,24 @@ public class ForumPostController {
     @GetMapping(value = "/forum_posts/{id}")
     public Optional<ForumPost> getPostById(@PathVariable Long id){
         return forumPostRepo.findById(id);
+    }
+
+    /**
+     * get forum post by lesson
+     * @return
+     */
+    @GetMapping(value = "/forum_posts/lesson/{id}")
+    public ForumPost getPostByLessonId(@PathVariable Long id){
+        return forumPostRepo.findByLessonId(id);
+    }
+
+    /**
+     * create new forum post [HELP]
+     */
+    @PostMapping(value = "/forum_posts")
+    public ForumPost createHelpPost(@Validated @RequestBody ForumPost post){
+
+        ForumPost newPost = new ForumPost(post.getTitle(), post.getQuestion());
+        return forumPostRepo.save(newPost);
     }
 }

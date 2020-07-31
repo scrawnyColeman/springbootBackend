@@ -10,6 +10,7 @@ import javax.persistence.*;
 public class Answer {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(nullable = false, name = "answer")
@@ -27,13 +28,12 @@ public class Answer {
     @ManyToOne
     private Question question;
 
-    public Answer(Long id, String answer, Boolean isCorrect, String responseMessage, Long answerTypeId, Long questionId) {
-        this.id = id;
+    public Answer(String answer, Boolean isCorrect, String responseMessage, Long answerTypeId, Long questionId) {
         this.answer = answer;
         this.isCorrect = isCorrect;
         this.responseMessage = responseMessage;
-        answerType = new AnswerType(answerTypeId, "");
-        question = new Question(questionId, "", "", null);
+        answerType = new AnswerType(answerTypeId);
+        question = new Question(questionId);
     }
 
     public Answer(Long id) {

@@ -9,6 +9,7 @@ import javax.persistence.*;
 public class Practical {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(nullable = false, name = "title")
@@ -26,8 +27,7 @@ public class Practical {
     @ManyToOne
     private Lesson lesson;
 
-    public Practical(Long id, String title, String question, String codeSnippet, String hint, Long lessonId) {
-        this.id = id;
+    public Practical(String title, String question, String codeSnippet, String hint, Long lessonId) {
         this.title = title;
         this.question = question;
         this.codeSnippet = codeSnippet;

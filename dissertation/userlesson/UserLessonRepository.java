@@ -8,7 +8,7 @@ import java.util.List;
 @Repository
 public interface UserLessonRepository extends JpaRepository<UserLesson, Long> {
 
-    List<UserLesson> findByUserId(Long userId);
+    List<UserLesson> findByUserIdAndIsCompletedFalse(Long userId);
 
     Long countByLessonId(Long lessonId);
 

@@ -24,6 +24,12 @@ public class Lesson {
     @Column(nullable = false, name = "yt_link")
     private String youtubeLink;
 
+    @Column(nullable = false, name = "users_taken")
+    private Long activeUsers;
+
+    @Column(nullable = false, name = "is_approved")
+    private Boolean approved;
+
     @ManyToOne
     private Language Language;
 
@@ -35,13 +41,14 @@ public class Lesson {
 
 
 
-    public Lesson(Long id, String title, String description, String theory, String youtubeLink, Long languageId) {
-        this.id = id;
+    public Lesson(Long activeUsers, String title, String description, String theory, Boolean approved, String youtubeLink, Long languageId) {
         this.title = title;
         this.description = description;
         this.theory = theory;
         this.youtubeLink = youtubeLink;
+        this.activeUsers = activeUsers;
         this.Language = new Language(languageId);
+        this.approved = approved;
     }
 
     public Lesson(Long id) {
@@ -57,6 +64,22 @@ public class Lesson {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Long getActiveUsers() {
+        return activeUsers;
+    }
+
+    public void setActiveUsers(Long activeUsers) {
+        this.activeUsers = activeUsers;
+    }
+
+    public Boolean getApproved() {
+        return approved;
+    }
+
+    public void setApproved(Boolean approved) {
+        this.approved = approved;
     }
 
     public String getTitle() {

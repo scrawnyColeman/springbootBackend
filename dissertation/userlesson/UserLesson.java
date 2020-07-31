@@ -1,5 +1,7 @@
 package uk.ac.qub.njoy.dissertation.userlesson;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.data.jpa.repository.Query;
 import uk.ac.qub.njoy.dissertation.lesson.Lesson;
 import uk.ac.qub.njoy.dissertation.user.User;
@@ -24,8 +26,7 @@ public class UserLesson {
     private Lesson lesson;
 
 
-    public UserLesson(Long id, boolean isCompleted, Long userId, Long lessonId) {
-        this.id = id;
+    public UserLesson(boolean isCompleted, Long userId, Long lessonId) {
         this.isCompleted = isCompleted;
         user = new User(userId);
         lesson = new Lesson(lessonId);

@@ -10,6 +10,7 @@ import javax.persistence.*;
 public class Comment {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "comment")
@@ -31,13 +32,20 @@ public class Comment {
         this.id = id;
     }
 
-    public Comment(Long id, String comment, Long parentId, String nestingValue, Long authorId, Long postId) {
-        this.id = id;
+    public Comment(String comment, Long parentId, String nestingValue, Long authorId, Long postId) {
         this.comment = comment;
         this.parentId = parentId;
         this.nestingValue = nestingValue;
         author = new User(authorId);
         post = new ForumPost(postId);
+    }
+
+    public Comment (String comment, Long parentId, String nestingValue, Long authorId, ForumPost post){
+        this.comment = comment;
+        this.parentId = parentId;
+        this.nestingValue = nestingValue;
+        author = new User(authorId);
+        post = new ForumPost(post.getId());
     }
 
     public Comment() {

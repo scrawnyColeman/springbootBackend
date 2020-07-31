@@ -17,6 +17,7 @@ public class Question {
     @Column(name="code_snippet")
     private String codeSnippet;
 
+
     @ManyToOne
     @JoinColumn(name = "lesson_id", nullable = false)
     private Lesson lesson;
@@ -25,8 +26,7 @@ public class Question {
         this.id = id;
     }
 
-    public Question(Long id, String question, String codeSnippet, Long lessonId) {
-        this.id = id;
+    public Question(String question, String codeSnippet, Long lessonId) {
         this.question = question;
         this.codeSnippet = codeSnippet;
         lesson = new Lesson(lessonId);
