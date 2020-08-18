@@ -12,4 +12,6 @@ public interface UserLessonRepository extends JpaRepository<UserLesson, Long> {
 
     Long countByLessonId(Long lessonId);
 
+    UserLesson findByLessonIdAndUserId(Long lessonId, Long userId);
+
 }

@@ -23,8 +23,10 @@ import uk.ac.qub.njoy.dissertation.user.User;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceUnit;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/njoy")
@@ -112,6 +114,7 @@ public class LessonController {
         Language language = languageRepo.findById(languageId)
                 .orElseThrow(()-> new ResourceNotFoundException("Language","id",languageId));
 
+
         Lesson newLesson = new Lesson(
                 0L,
                 lesson.getTitle(),
@@ -119,9 +122,10 @@ public class LessonController {
                 lesson.getTheory(),
                 false,
                 lesson.getYoutubeLink(),
-                language.getId());
+                language.getId()
+        );
 
-
+        newLesson.setRecommendedLessons(lesson.getRecommendedLessons());
 
         return lessonRepo.save(newLesson);
     }

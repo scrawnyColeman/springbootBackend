@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import uk.ac.qub.njoy.dissertation.exceptions.ResourceNotFoundException;
 
 import java.util.List;
 import java.util.Optional;
@@ -28,8 +29,8 @@ public class ForumPostController {
      * @return
      */
     @GetMapping(value = "/forum_posts/{id}")
-    public Optional<ForumPost> getPostById(@PathVariable Long id){
-        return forumPostRepo.findById(id);
+    public ForumPost getPostById(@PathVariable Long id){
+        return forumPostRepo.findById(id).orElseThrow(()-> new ResourceNotFoundException("ForumPost","id",id));
     }
 
     /**

@@ -9,6 +9,5 @@ import java.util.Optional;
 @Repository
 public interface ForumPostRepository extends JpaRepository<ForumPost, Long> {
 
-    Optional<ForumPost> findById(Long id);
     ForumPost findByLessonId(Long lessonId);
 }

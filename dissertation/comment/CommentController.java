@@ -43,7 +43,7 @@ public class CommentController {
      * create new comment on forum post
      */
     @PostMapping(value = "/comments/{userId}/{postId}")
-    public Comment createHelpPost(@PathVariable Long userId,
+    public Comment createComment(@PathVariable Long userId,
                                   @PathVariable Long postId,
                                   @Validated @RequestBody Comment bodyComment){
         ForumPost post = forumPostRepository.findById(postId)

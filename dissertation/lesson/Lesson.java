@@ -2,6 +2,7 @@ package uk.ac.qub.njoy.dissertation.lesson;
 
 import uk.ac.qub.njoy.dissertation.language.Language;
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -37,7 +38,7 @@ public class Lesson {
             @JoinColumn(name = "lesson_id", referencedColumnName = "id", nullable =   false)}, inverseJoinColumns = {
             @JoinColumn(name = "recommended_lesson_id", referencedColumnName = "id", nullable = false)})
     @ManyToMany
-    private Set<Lesson> recommendedLessons;
+    private List<Lesson> recommendedLessons;
 
 
 
@@ -122,11 +123,11 @@ public class Lesson {
         Language = language;
     }
 
-    public Set<Lesson> getRecommendedLessons() {
+    public List<Lesson> getRecommendedLessons() {
         return recommendedLessons;
     }
 
-    public void setRecommendedLessons(Set<Lesson> recommendedLessons) {
+    public void setRecommendedLessons(List<Lesson> recommendedLessons) {
         this.recommendedLessons = recommendedLessons;
     }
 

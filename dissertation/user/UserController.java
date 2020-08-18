@@ -18,7 +18,6 @@ public class UserController {
 
     @Autowired
     UserRepository userRepo;
-
     /**
      * Get All Users
      */
@@ -26,14 +25,6 @@ public class UserController {
     public List<User> getAllUsers(){
         return userRepo.findAll();
     }
-
-    /**
-     * Get User By Type
-     */
-//    @GetMapping("/users/types/{id}")
-//    public List<User> getUsersByRole(@PathVariable(value = "id") Long roleId){
-//        return userRepo.findByUserRoleId(roleId);
-//    }
 
     /**
      * Create a new user
@@ -63,7 +54,7 @@ public class UserController {
      * Find by username or email
      */
      @GetMapping("/user/{username}/{email}")
-     public List<User> verifyIfUserByNameOrEmail(@PathVariable String username, @PathVariable String email) {
+     public List<User> checkIfNewInformationInUse(@PathVariable String username, @PathVariable String email) {
          List<User>users = new ArrayList<>();
          users.add(userRepo.findByUsername(username));
          users.add(userRepo.findByEmail(email));
@@ -119,18 +110,6 @@ public class UserController {
 
          return updatedUser;
      }
-     /**
-     * Delete a user
-     */
-    @DeleteMapping("/notes/{id}")
-    public ResponseEntity<?> deleteUser(@PathVariable(value="id") Long userId){
-        User user = userRepo.findById(userId)
-                .orElseThrow(()-> new ResourceNotFoundException("User","id",userId));
-
-        userRepo.delete(user);
-        return ResponseEntity.ok().build();
-
-    }
 
 
 
