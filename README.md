@@ -1,7 +1,6 @@
 <h1 align="center">Dissertation Backend</h1>
 
 The microservice was built using SpringBoot, paired with a MySQL Database. I used JPA for it's speed of development. However, if I was to overhaul the application and start again, I would use JDBC to have better control over my SQL queries.
-<p align="center">Hosted via <a href="https://product-review-56293.web.app/"> Firebase </a> </p>
 
 <div align="center">
     <code>
